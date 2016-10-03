@@ -10,4 +10,7 @@ y_shaft_distance = NEMA_F[ab_motor]+y_s+y_shaft_distance_extra;
 //
 x_shaft_distance = y_shaft_distance-y_d-y_s;
 
+ab_motor_xpos = f_x/2-f_t-y_sp-y_d/2-wall;
+ab_motor_ypos = f_y/2-f_t-(NEMA_H[ab_motor]*2+BOLT_D[3])/2+(f_t-f_tr)/2;
+
 //echo(x_shaft_distance);

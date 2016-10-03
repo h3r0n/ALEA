@@ -6,7 +6,11 @@ $fs=.5;						//minimum arc segment
 e=.1;						//extra length for manfold mesh (do not change)
 tol=.5;						//xy compensation for small holes
 
-wall=5/2;					//thin wall thickness
+//$t=.35;					//
+x=0;//*cos($t*360);			// printhead position
+y=0;//*sin($t*360);		//
+
+wall=5/2;					//(some) thin wall thickness
 
 //frame
 f_t=10;						//frame thickness

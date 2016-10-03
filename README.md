@@ -1,5 +1,7 @@
 # alea
 
+![](preview.png)
+
 `alea` è una stampante 3D dalle dimensioni contenute che mira ad essere economica, semplice da costruire e di facile manutenzione.
 
 
