@@ -1,6 +1,5 @@
 include <standard.scad>
 
-
 //render & print
 $fs=.5;						//minimum arc segment
 e=.1;						//extra length for manfold mesh (do not change)
@@ -53,6 +52,11 @@ y_s=8;						//shaft diameter
 y_shaft_distance_extra=3;	//extra distance between shafts
 y_sp=6;						//shaft position (relative to frame)
 
+
+//z
+z_s=8;
+
+
 //idler
 idler_d=8;					//groove bearing OD
 idler_l=3;					//groove bearing thickness
@@ -64,13 +68,29 @@ idler_vk=.5;				//idler verical keepout (washer thickness?)
 //pulley
 pulley_d=200/PI/5;			//5 steps per mm (80 with 16x microstepping)
 pulley_h=2;
-pulley_rivet=1;
+pulley_rivet=1.5;
 pulley_flat_shaft=true;
 
-//hm (hotend mount)
-//hm_sc_d=3+0.4*3*2;			//sliding cylinder diameter (optimized for 0.4mm nozzle)
-hm_sc_d=NUT_D[3];
+//bed
+bed_x=100;
+bed_y=100;
 
+// ------
+//  math
+// ------
+pulley_length = pulley_h+4*pulley_rivet+NUT_D[3];
+pulley_diameter = pulley_d+pulley_rivet*2;
+pulley_wire_height = pulley_h/2+pulley_rivet*2+NUT_D[3];
+pulley_screw_length = (pulley_diameter-NEMA_S[17])/2;
 
-include <math.scad>
+y_shaft_distance = NEMA_F[ab_motor]+y_s+y_shaft_distance_extra;
+
+x_shaft_distance = y_shaft_distance-y_d-y_s;
+
+z_shaft_distance = (f_x-f_t*2)/2;
+
+ab_motor_xpos = f_x/2-f_t-y_sp-y_d/2-wall;
+ab_motor_ypos = f_y/2-f_t-(NEMA_H[ab_motor]*2+BOLT_D[3])/2+(f_t-f_tr)/2;
+
+use <press_fit.scad>
 

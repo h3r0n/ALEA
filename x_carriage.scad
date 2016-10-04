@@ -12,16 +12,16 @@ module x_carriage(ghosts=false) {
 		for(i=[-1,1])							//bearing holes
 			translate([0,0,x_shaft_distance]/2*i)
 				rotate([0,90,0])
-					cylinder(d=x_d, h=x_l+e, center=true);
+					press_fit(d=x_d, h=x_l+e, center=true);
 
 		scale([x_l-wall*2, 10, pulley_d]/10)	//middle hole
 			rotate([90,0,0])
-				cylinder(d=10, h=x_d+wall*2+e, center=true);
+				press_fit(d=10, h=x_d+wall*2+e, center=true);
 	
 		for(i=[-1,1])	for(j=[-1,1])			//cable holes
 			translate([0,(idler_d+idler_hk)*j,pulley_d*i]/2)
 				rotate([0,90,0])
-					cylinder(d=BOLT_D[3], h=x_l+e, center=true);
+					cylinder(d=4, h=x_l+e, center=true);
 	
 	}
 
@@ -63,7 +63,7 @@ module x_carriage(ghosts=false) {
 			for(i=[-1,1]) for(j=[-1,1])			//fan mount holes
 				translate([x_l+e, (x_fan-x_fans_m)*i, (x_fan-x_fans_m)*j]/2)
 					rotate([0,-90,0])
-						cylinder(d=BOLT_D[3], h=7.5);
+						press_fit(d=BOLT_D[3], h=7.5);
 			
 			translate([-x_l/2,x_blower/2-x_fan/2,-(x_blower/2-x_fan/2)])
 				sphere(d=x_blower_duct);		//blower duct
@@ -71,12 +71,12 @@ module x_carriage(ghosts=false) {
 			for(i=[-1,1]) for(j=[-1,1])			//blower mount holes
 				translate([-x_l-e, x_blower-x_fan+(x_blower-x_fans_m)*i, -(x_blower-x_fan)+(x_blower-x_fans_m)*j]/2)	
 					rotate([0,90,0])
-						cylinder(d=BOLT_D[3], h=7.5);
+						press_fit(d=BOLT_D[3], h=7.5);
 		
 			translate ([0,-x_fan/2+.4,-x_fan*1/3])
 				rotate([90,0,0])
 					linear_extrude(height = .8)
-						text("alea", font="Overpass", size=9, halign="center", valign="center");
+						text("ALEA", font="FreeSerif", size=6.5, halign="center", valign="center");
 		}
 		
 		%if (ghosts) {
@@ -99,14 +99,14 @@ module x_carriage(ghosts=false) {
 		
 			for(i=[-1,1]) for(j=[-1,1])
 				translate([(x_l-NUT_D[3])/2*i,(x_fan-NUT_D[3])/2*j,-9/2-e/2])
-					cylinder(d=BOLT_D[3], h=9+e);
+					cylinder(d=4, h=9+e);
 				
 			translate([0,-(x_fan-6+e/2)/2,0]) {
 				cube([13,6+e/2,6+e], center=true);
 				for(j=[-1,1])
 					translate([6.5/2*j,0,0])
 						rotate([90,0,0])
-					 		cylinder(d=2, h=15, center=true);
+					 		press_fit(d=2, h=15, center=true);
 			}
 		}
 }

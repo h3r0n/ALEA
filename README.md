@@ -1,13 +1,14 @@
-# alea
+<h1 style="font-family: 'FreeSerif';">
+ALEA</h1>
 
 ![](preview.png)
 
-`alea` è una stampante 3D dalle dimensioni contenute che mira ad essere economica, semplice da costruire e di facile manutenzione.
+*ALEA* è una stampante 3D dalle dimensioni contenute che mira ad essere economica, semplice da costruire e di facile manutenzione.
 
 
 ### Dati tecnici
 
-`alea` è disegnata con OpenSCAD ed è totalmente parametrica. Le sue caratteristiche dipendono dai valori in `config.scad`. In base a quelli di default i dati sono:
+*ALEA* è disegnata con OpenSCAD ed è totalmente parametrica. Le sue caratteristiche dipendono dai valori in `config.scad`. In base a quelli di default i dati sono:
 
  * Area di stampa: `10`x`10`x`10`mm
  * Numero di estrusori: `1` (incrementabili con meccanismi analoghi al `Prometheus System`).
@@ -26,16 +27,17 @@ La ridotta area di stampa porta con sè diversi vantaggi:
 Anche possedendo una stampante più grande, raramente si stampano oggetti più grandi di `10`cm.
 
 
-### Cosa porta di nuovo?
+### Cosa porta di nuovo/diverso?
 
- * Rispetto a quella della `DICE`, la testa di stampa pur conservando le due ventole, vanta un minore numero di parti (solo 2) ed un meccanismo di aggancio dell'hotend montato su molle. Grazie a quest'ultimo è possibile eseguire la procedura di autolivellamento del piatto di stampa senza dover aggiungere alcuna parte addizionale, come sensori di prossimità, servomotori etc... che andrebbero a occupare spazio riducendo l'area di stampa.
- * L'implementazione del meccanismo `CoreXY` è molto simile a quello già adottato dalla `Tantilot` (un'altra stampante ispirata alla Tantillus). `alea` ne adotta una variante rivista che risolve il "problema" dell'incrocio della cinghia.
- * La disposizione delle guide lineari (due per lato) che ho già sperimentato con la mia `voron600` conferisce maggiore rigidità e risolve il problema della flessione nella direzione avanti-dietro della testa di stampa.
+ * Rispetto a quella della *DICE*, la testa di stampa pur conservando le due ventole, vanta un minore numero di parti (solo 2) ed un meccanismo di aggancio dell'hotend montato su molle. Grazie a quest'ultimo è possibile eseguire la procedura di autolivellamento del piatto di stampa senza dover aggiungere alcuna parte addizionale, come sensori di prossimità, servomotori etc... che andrebbero a occupare spazio riducendo l'area di stampa.
+ * L'implementazione del meccanismo *CoreXY* è molto simile a quello già adottato dalla *Tantilot* (un'altra stampante ispirata alla *Tantillus*). *ALEA* ne adotta una variante rivista che risolve il "problema" dell'incrocio della cinghia.
+ * La disposizione delle guide lineari (due per lato) che ho già sperimentato con la mia *voron600* conferisce maggiore rigidità e risolve il problema della flessione nella direzione avanti-dietro della testa di stampa.
  * Design totalmente parametrico: è possibile definire misure personalizzate per le barre di acciaio, il frame, i cuscinetti, i motori, etc...
+ * Le cinghie di gomma sono rimpiazzate da filo da pesca: è ben meno elastico, è più resistente alle deformazioni e occupa meno spazio.
 
 
 ### Nome
 
-Il nome `alea` è un tributo ai progetti a cui essa è ispirata. `alea` in latino significa "dado" e quello della **`DICE`** ("dado in inglese") si ispira la testa di stampa ultracompatta e l'innovativo meccanismo di trasmissione `CoreXY`. <br/>
-Il nome latino richiama quello della `Tantillus` di cui `alea` intende essere, nel suo piccolo, un successore spirituale, conservandone l'utilizzo di filo da pesca in luogo delle più comuni cinghie di gomma e l'idea del frame stampabile in semplice PLA.
+Il nome *ALEA* è un tributo ai progetti a cui essa è ispirata. *ALEA* in latino significa "dado" e quello della *DICE* ("dado in inglese") si ispira la testa di stampa ultracompatta e l'innovativo meccanismo di trasmissione *CoreXY*. <br/>
+Il nome latino richiama quello della *Tantillus* di cui *ALEA* intende essere, nel suo piccolo, un successore spirituale, conservandone l'utilizzo di filo da pesca in luogo delle più comuni cinghie di gomma e l'idea del frame stampabile in semplice PLA.
 

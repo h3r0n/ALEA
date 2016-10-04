@@ -2,7 +2,7 @@ include <standard.scad>		//size of standard components
 include <config.scad>		//user configuration
 include <math.scad>			//calculations
 
-translate([0,0,pulley_wire_height])
+module pulley() {
 
 difference() {
 
@@ -41,3 +41,9 @@ difference() {
 				cylinder(d=BOLT_D[3], h=pulley_diameter/2+e);
 	}
 }
+
+}
+pulley();
+
+
+

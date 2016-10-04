@@ -18,12 +18,12 @@ module x_mount() {
 		for(i=[-1,1]) for(j=[-1,1])					//mounting screws
 			translate([(x_l-NUT_D[3])/2*i,(x_fan-NUT_D[3])/2*j,-9/2-e/2]) {
 				cylinder(d=NUT_D[3], h=NUT_H[3]+e/2, $fn=6);
-				cylinder(d=BOLT_D[3], h=9+e);
+				press_fit(d=BOLT_D[3], h=9+e);
 			}
 	
 		translate([0,12+BOLT_D[3],0]/2)				//clamp
 			rotate([0,90,0])
-				cylinder(d=BOLT_D[3], h=x_fan+e, center=true);
+				press_fit(d=BOLT_D[3], h=x_fan+e, center=true);
 	}
 
 	%translate([-5,3.4,-3-6.9])
