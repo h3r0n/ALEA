@@ -24,6 +24,15 @@ module x_carriage(ghosts=false) {
 					cylinder(d=4, h=x_l+e, center=true);
 	
 	}
+	
+	%if(ghosts)
+		for(k=[-1,1])
+			translate([0,0,x_shaft_distance/2*k])
+				rotate([0,90,0])
+					difference() {
+						cylinder(d=y_d, h=y_l, center=true);
+						cylinder(d=y_s, h=y_l+e, center=true);
+					}
 
 	translate([0,-(x_d+x_fan)/2-wall,-(x_shaft_distance+x_d+wall*2)/2+x_fan/2]) {
 		difference() {
@@ -63,7 +72,7 @@ module x_carriage(ghosts=false) {
 			for(i=[-1,1]) for(j=[-1,1])			//fan mount holes
 				translate([x_l+e, (x_fan-x_fans_m)*i, (x_fan-x_fans_m)*j]/2)
 					rotate([0,-90,0])
-						press_fit(d=BOLT_D[3], h=7.5);
+						press_fit(d=BOLT_D[3], h=15/2);
 			
 			translate([-x_l/2,x_blower/2-x_fan/2,-(x_blower/2-x_fan/2)])
 				sphere(d=x_blower_duct);		//blower duct
@@ -71,7 +80,7 @@ module x_carriage(ghosts=false) {
 			for(i=[-1,1]) for(j=[-1,1])			//blower mount holes
 				translate([-x_l-e, x_blower-x_fan+(x_blower-x_fans_m)*i, -(x_blower-x_fan)+(x_blower-x_fans_m)*j]/2)	
 					rotate([0,90,0])
-						press_fit(d=BOLT_D[3], h=7.5);
+						press_fit(d=BOLT_D[3], h=15/2);
 		
 			translate ([0,-x_fan/2+.4,-x_fan*1/3])
 				rotate([90,0,0])
@@ -86,6 +95,7 @@ module x_carriage(ghosts=false) {
 					cube([10,x_fan,x_fan], center=true);
 				translate([x_l+10,x_fan-x_blower,x_blower-x_fan]/-2)
 					cube([10,x_blower,x_blower], center=true);
+				
 		}	
 	}
 		

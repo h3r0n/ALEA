@@ -3,9 +3,10 @@ include <config.scad>
 use <x_carriage.scad>
 use <y_carriage.scad>
 use <pulley.scad>
+use <z_carriage.scad>
 
 
-module frame(ghosts=false) {
+module frame_top(ghosts=false) {
 
 	difference() {
 	
@@ -108,7 +109,7 @@ module frame(ghosts=false) {
 	
 		for(i=[-1,1])					//y shafts
 			translate([(f_x/2-f_t-y_sp)*i, y, 0])
-				scale([-i,1,i])
+				scale([-i,1,-i])
 					y_carriage(ghosts);
 	
 		translate([x,y,0])
@@ -125,8 +126,11 @@ module frame(ghosts=false) {
 			translate([(f_x/2-f_t-y_sp)*i, ab_motor_ypos, 0])
 				rotate([0,-90*i,0])
 					pulley();
+					
+		translate([0,ab_motor_xpos,-f_z/2-15])
+			z_carriage();
 	}
 }
 
-%frame(ghosts=true);
+frame_top(ghosts=true);
 

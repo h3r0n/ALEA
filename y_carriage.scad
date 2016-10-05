@@ -35,14 +35,25 @@ module y_carriage(ghosts=false) {
 					cylinder(d=idler_l+idler_vk, h=y_l+e, center=true);
 	}
 	
-	if (ghosts)
-		%translate([0,0,x_shaft_distance/2])
-			rotate([0,90,0])
-				cylinder(d=y_s, h=f_x-(f_t+y_sp)*2);
+	%if (ghosts) {
+		
+		for(i=[-1,1])
+			translate([0,0,x_shaft_distance/2*i])
+				rotate([0,90,0])
+					cylinder(d=y_s, h=(f_x-(f_t+y_sp)*2)/2);
+		
+		for(k=[-1,1])
+			translate([0,0,y_shaft_distance/2*k])
+				rotate([90,0,0])
+					difference() {
+						cylinder(d=y_d, h=y_l, center=true);
+						cylinder(d=y_s, h=y_l+e, center=true);
+					}
+	}
 	
 }
 
-y_carriage();
+y_carriage(ghosts=true);
 
 echo(x_shaft_distance-8);
 
