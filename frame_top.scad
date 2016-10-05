@@ -127,8 +127,12 @@ module frame_top(ghosts=false) {
 				rotate([0,-90*i,0])
 					pulley();
 					
-		translate([0,ab_motor_xpos,-f_z/2-16.5])
+		*translate([0,ab_motor_xpos,-f_z/2-z_h_extra])
 			z_carriage(ghosts=true);
+			
+		for(i=[-1,1]) for (j=[-1,1])	//y shafts
+			translate([(f_x-f_t)/2*i, (f_y-f_t)/2*j, 0])
+				cylinder(d=f_tr, h=f_z, center=true);
 	}
 }
 

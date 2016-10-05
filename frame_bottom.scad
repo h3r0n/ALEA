@@ -38,6 +38,11 @@ module frame_bottom(ghosts=true) {
 		
 	}
 	
+	%if(ghosts)
+		for(i=[-1,1]) for (j=[-1,1])	//y shafts
+			translate([(f_x-f_t)/2*i, (f_y-f_t)/2*j, 0])
+				cylinder(d=f_tr, h=z_l+f_t, center=true);
+	
 }
 
 frame_bottom(ghosts=true);

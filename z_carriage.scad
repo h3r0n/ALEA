@@ -42,7 +42,7 @@ module z_carriage(ghosts=false) {
 		translate([0,0,z_l])			//central arc
 			scale([z_shaft_distance-z_d-wall*2,50,z_l]/50)
 				rotate([90,0,0])
-					cylinder(d=50, h=22+wall*2+e, center=true);
+					cylinder(d=50, h=22+wall*2+e, $fn=66, center=true);
 		
 		for(i=[-1,1])					//bearing holes
 			translate([z_shaft_distance/2*i,0,-e/2])
@@ -63,7 +63,7 @@ module z_carriage(ghosts=false) {
 		translate([0,bed_ypos-z_d/2-wall,z_l])
 			scale([1, -(bed_ypos)/50, (z_l-wall*2)/50])
 				rotate([0,90,0])
-					cylinder(d=100, h=z_shaft_distance+z_d+wall*2+e, center=true);
+					cylinder(d=100, h=z_shaft_distance+z_d+wall*2+e, $fn=100, center=true);
 					
 		for(i=[-1,1]) {					//slim down
 			translate([z_shaft_distance/2*i,bed_ypos/4,-e/2])

@@ -6,8 +6,9 @@ e=.1;						//extra length for manfold mesh (do not change)
 tol=.5;						//xy compensation for small holes
 
 //$t=.35;					//
-x=0;//*cos($t*360);			// printhead position
-y=0;//*sin($t*360);		//
+x=50*cos($t*360);			// printhead position
+y=40*sin($t*360);			//
+z=50*sin($t*360);
 
 wall=5/2;					//(some) thin wall thickness
 
@@ -29,6 +30,8 @@ ab_motor=17;				//xy motors
 ab_motor_l=47;				//xy motors length
 z_motor=17;					//z motor
 z_motor_l=47;				//z motor length
+z_h=100;
+z_h_extra=16.5;
 
 //x
 x_d=15;						//bearing diameter
