@@ -132,5 +132,5 @@ module frame_top(ghosts=false) {
 	}
 }
 
-%frame_top(ghosts=true);
+frame_top(ghosts=true);
 
