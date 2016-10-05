@@ -7,7 +7,7 @@ tol=.5;						//xy compensation for small holes
 
 //$t=.35;					//
 x=0;//*cos($t*360);			// printhead position
-y=40;//*sin($t*360);		//
+y=0;//*sin($t*360);		//
 
 wall=5/2;					//(some) thin wall thickness
 
@@ -75,7 +75,7 @@ pulley_flat_shaft=true;
 
 //bed
 bed_x=100;
-bed_y=90;
+bed_y=100;
 
 // ------
 //  math
@@ -89,11 +89,14 @@ y_shaft_distance = NEMA_F[ab_motor]+y_s+y_shaft_distance_extra;
 
 x_shaft_distance = y_shaft_distance-y_d-y_s;
 
-z_shaft_distance = bed_x/3*2;
-z_carriage_arm = NEMA_F[ab_motor]/2+x_d+wall*2+x_fan/2;
-
 ab_motor_xpos = f_x/2-f_t-y_sp-y_d/2-wall;
 ab_motor_ypos = f_y/2-f_t-(NEMA_H[ab_motor]*2+BOLT_D[3])/2+(f_t-f_tr)/2;
+
+
+z_shaft_distance = bed_x/2-wall;
+z_carriage_arm = NEMA_F[ab_motor]/2+y_l/2+x_d/2+wall+x_fan/2;
+z_carriage_arm_max = ab_motor_ypos+f_y/2-f_t-x_fan/2;
+
 
 
 

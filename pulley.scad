@@ -1,6 +1,5 @@
-include <standard.scad>		//size of standard components
 include <config.scad>		//user configuration
-include <math.scad>			//calculations
+
 
 module pulley() {
 

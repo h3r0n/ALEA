@@ -110,7 +110,7 @@ module frame_top(ghosts=false) {
 		for(i=[-1,1])					//y shafts
 			translate([(f_x/2-f_t-y_sp)*i, y, 0])
 				scale([-i,1,-i])
-					y_carriage(ghosts);
+					y_carriage(ghosts=true);
 	
 		translate([x,y,0])
 			x_carriage(ghosts=true);
@@ -127,10 +127,10 @@ module frame_top(ghosts=false) {
 				rotate([0,-90*i,0])
 					pulley();
 					
-		translate([0,ab_motor_xpos,-f_z/2-15])
-			z_carriage();
+		translate([0,ab_motor_xpos,-f_z/2-16.5])
+			z_carriage(ghosts=true);
 	}
 }
 
-frame_top(ghosts=true);
+%frame_top(ghosts=true);
 
