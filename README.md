@@ -1,7 +1,7 @@
 <h1 style="font-family: 'FreeSerif';">
 ALEA</h1>
 
-![](preview.png)
+![](preview.gif)
 
 *ALEA* è una stampante 3D dalle dimensioni contenute che mira ad essere economica, semplice da costruire e di facile manutenzione.
 

@@ -1,6 +1,8 @@
 include <config.scad>
 
-module frame_bottom(ghosts=true) {
+module frame_bottom(assembly=true) {
+	
+	color(pla)
 	
 	difference() {
 		
@@ -38,13 +40,14 @@ module frame_bottom(ghosts=true) {
 		
 	}
 	
-	%if(ghosts)
+	color(th_rods)
+	if(assembly)
 		for(i=[-1,1]) for (j=[-1,1])	//y shafts
 			translate([(f_x-f_t)/2*i, (f_y-f_t)/2*j, 0])
 				cylinder(d=f_tr, h=z_l+f_t, center=true);
 	
 }
 
-frame_bottom(ghosts=true);
+frame_bottom(assembly=true);
 
 

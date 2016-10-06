@@ -3,6 +3,8 @@ include <config.scad>		//user configuration
 
 module pulley() {
 
+color(abs)
+
 difference() {
 
 	union() {

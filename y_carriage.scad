@@ -1,7 +1,10 @@
 include <config.scad>		//user configuration
 
-module y_carriage(ghosts=false) {
+use <extra/bearing.scad>
 
+module y_carriage(assembly=false) {
+	
+	color(abs)
 	difference() {
 		union() {
 			for(i=[-1,1])
@@ -35,8 +38,9 @@ module y_carriage(ghosts=false) {
 					cylinder(d=idler_l+idler_vk, h=y_l+e, center=true);
 	}
 	
-	%if (ghosts) {
+	if (assembly) {
 		
+		color(shaft)
 		for(i=[-1,1])
 			translate([0,0,x_shaft_distance/2*i])
 				rotate([0,90,0])
@@ -45,17 +49,12 @@ module y_carriage(ghosts=false) {
 		for(k=[-1,1])
 			translate([0,0,y_shaft_distance/2*k])
 				rotate([90,0,0])
-					difference() {
-						cylinder(d=y_d, h=y_l, center=true);
-						cylinder(d=y_s, h=y_l+e, center=true);
-					}
+					bearing(od=y_d, id=y_s, l=y_l, center=true);
 	}
 	
 }
 
-y_carriage(ghosts=true);
-
-echo(x_shaft_distance-8);
+y_carriage(assembly=true);
 
 
 

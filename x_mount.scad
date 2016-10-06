@@ -1,6 +1,8 @@
 include <config.scad>
 
-module x_mount() {
+module x_mount(assembly=false) {
+	
+	color(pla)
 	
 	difference() {
 
@@ -26,10 +28,16 @@ module x_mount() {
 				press_fit(d=BOLT_D[3], h=x_fan+e, center=true);
 	}
 
-	%translate([-5,3.4,-3-6.9])
-		rotate([0,0,180])
-			import("extra/E3D_v6.stl");
+	if(assembly) {	
 		
+		color(e3d)
+		
+		translate([-5,3.4,-3-6.9])
+			rotate([0,0,180])
+				import("extra/E3D_v6.stl");
+	}
 }
 
-x_mount();
+x_mount(assembly=true);
+
+

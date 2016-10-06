@@ -4,14 +4,17 @@ use <x_carriage.scad>
 use <y_carriage.scad>
 use <pulley.scad>
 use <z_carriage.scad>
+use <extra/nema.scad>
 
 
-module frame_top(ghosts=false) {
-
+module frame_top(assembly=false) {
+	
+	color(pla)
+	
 	difference() {
 	
 		union() {
-		
+			
 			difference() {
 				cube([f_x, f_y, f_z], center=true);		//body
 				cube([f_x-f_t*2, f_y-f_t*2, f_z+e], center=true);
@@ -98,43 +101,44 @@ module frame_top(ghosts=false) {
 			translate([z_shaft_distance/2*i, ab_motor_ypos, -f_z/2-e/2])
 				press_fit(d=z_s, h=(f_z-NEMA_F[ab_motor])/2+e);
 	}
-	
-	color(alpha=.9)			//ghosts
-	%if (ghosts) {
-	
+			//ghosts
+	if (assembly) {
+		
+		color(shaft)
 		for(i=[-1,1]) for (k=[-1,1])	//y shafts
 			translate([(f_x/2-f_t-y_sp)*i, 0, y_shaft_distance*k/2])
 				rotate([-90,0,0])
 					cylinder(d=y_s, h=f_y+e, center=true);
 	
-		for(i=[-1,1])					//y shafts
+		for(i=[-1,1])					//y carriage
 			translate([(f_x/2-f_t-y_sp)*i, y, 0])
 				scale([-i,1,-i])
-					y_carriage(ghosts=true);
+					y_carriage(assembly=true);
 	
 		translate([x,y,0])
-			x_carriage(ghosts=true);
-			
+			x_carriage(assembly=true);
+		
+
 		for(i=[-1,1]) 						//ab motors
 			translate([(ab_motor_xpos-ab_motor_l/2)*i, ab_motor_ypos, 0])
-				cube([ab_motor_l, NEMA_F[ab_motor], NEMA_F[ab_motor]], center=true);
+				rotate([0,0,180]) rotate([0,-90*i,0])
+					nema(standard=z_motor, length=z_motor_l);
 		
 		translate([0, ab_motor_ypos, f_z/2-z_motor_l/2])	//z motor
-			cube([NEMA_F[z_motor], NEMA_F[z_motor], z_motor_l], center=true);
+			rotate([0,180,0])
+				nema(standard=z_motor, length=z_motor_l);
 		
 		for(i=[-1,1]) 						//pulleys
 			translate([(f_x/2-f_t-y_sp)*i, ab_motor_ypos, 0])
-				rotate([0,-90*i,0])
+				rotate([0,-90*i,0]) rotate([0,0,-10*360*$t])
 					pulley();
-					
-		*translate([0,ab_motor_xpos,-f_z/2-z_h_extra])
-			z_carriage(ghosts=true);
-			
-		for(i=[-1,1]) for (j=[-1,1])	//y shafts
+		
+		color(th_rods)	
+		for(i=[-1,1]) for (j=[-1,1])	//threaded rods
 			translate([(f_x-f_t)/2*i, (f_y-f_t)/2*j, 0])
 				cylinder(d=f_tr, h=f_z, center=true);
 	}
 }
 
-frame_top(ghosts=true);
+frame_top(assembly=true);
 

@@ -5,10 +5,16 @@ $fs=.5;						//minimum arc segment
 e=.1;						//extra length for manfold mesh (do not change)
 tol=.5;						//xy compensation for small holes
 
-//$t=.35;					//
+				//
 x=50*cos($t*360);			// printhead position
 y=40*sin($t*360);			//
 z=50*sin($t*360);
+
+/*
+x=0;			// printhead position
+y=0;			//
+z=0;
+*/
 
 wall=5/2;					//(some) thin wall thickness
 
@@ -100,7 +106,22 @@ z_shaft_distance = bed_x/2-wall;
 z_carriage_arm = NEMA_F[ab_motor]/2+y_l/2+x_d/2+wall+x_fan/2;
 z_carriage_arm_max = ab_motor_ypos+f_y/2-f_t-x_fan/2;
 
+//COLORS
+abs="OrangeRed";
+pla="SteelBlue";
+shaft="DarkGray";
+fan=[.1, .1, .1];
+mdf="BurlyWood";
 
+abs_="LightSteelBlue";
+bearing_inside=fan;
+bearing_outside=shaft;
+blower=fan;
+e3d="Silver";
+heatbed="Silver";
+th_rods=shaft;
+nema_body=fan;
+nema_plate=shaft;
 
 
 use <press_fit.scad>

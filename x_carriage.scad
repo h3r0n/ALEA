@@ -1,9 +1,13 @@
 include <config.scad>		//user configuration
 
 use <x_mount.scad>
+use <extra/bearing.scad>
+use <extra/fan.scad>
+use <extra/blower.scad>
 
-module x_carriage(ghosts=false) {
-
+module x_carriage(assembly=false) {
+	
+	color(abs)
 	difference() {
 												//body
 		cube([x_l,x_d+wall*2,x_shaft_distance+x_d+wall*2], center=true);
@@ -25,16 +29,14 @@ module x_carriage(ghosts=false) {
 	
 	}
 	
-	%if(ghosts)
+	if(assembly)
 		for(k=[-1,1])
 			translate([0,0,x_shaft_distance/2*k])
 				rotate([0,90,0])
-					difference() {
-						cylinder(d=y_d, h=y_l, center=true);
-						cylinder(d=y_s, h=y_l+e, center=true);
-					}
-
+					bearing(id=x_s, od=x_d, l=x_l, center=true);
+	
 	translate([0,-(x_d+x_fan)/2-wall,-(x_shaft_distance+x_d+wall*2)/2+x_fan/2]) {
+		color(abs)
 		difference() {
 			union() {
 				cube([x_l, x_fan, x_fan], center=true);		//body
@@ -88,18 +90,20 @@ module x_carriage(ghosts=false) {
 						text("ALEA", font="FreeSerif", size=6.5, halign="center", valign="center");
 		}
 		
-		%if (ghosts) {
+		if (assembly) {
 				translate([0,0,x_fan+9]/2)
-					x_mount();
+					x_mount(assembly=true);
 				translate([x_l+10,0,0]/2)
-					cube([10,x_fan,x_fan], center=true);
+					rotate([0,90,0])
+						fan(x_fan, 10, x_fan-x_fans_m);
 				translate([x_l+10,x_fan-x_blower,x_blower-x_fan]/-2)
-					cube([10,x_blower,x_blower], center=true);
+					rotate([-90,0,-90])
+						blower(x_blower,10);
 				
 		}	
 	}
 		
-		
+	color(abs)
 	translate([0,-(x_d+x_fan)/2-wall,(x_shaft_distance+x_d+wall*2)/2-ms_h/2])
 		difference() {
 			cube([x_l,x_fan,6], center=true);
@@ -121,6 +125,6 @@ module x_carriage(ghosts=false) {
 		}
 }
 
-x_carriage(ghosts=true);
+x_carriage(assembly=true);
 
 

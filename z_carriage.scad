@@ -1,12 +1,15 @@
 include <config.scad>
 
+use <extra/bearing.scad>
 
-module z_carriage(ghosts=false) {
+module z_carriage(assembly=false) {
 	
 	bed_ypos = -(z_carriage_arm+(z_carriage_arm_max-z_carriage_arm)/2);
 	
+	
 	rotate([0,180,0]) {
 	
+	color(abs)
 	difference() {	
 		union() {
 			for(i=[-1,1])
@@ -97,25 +100,23 @@ module z_carriage(ghosts=false) {
 			}
 	}
 	
-		%if (ghosts) {
-		
+		if (assembly) {
+			
+			color(heatbed)
 			translate([0,bed_ypos,-3-2/2])
 				cube([bed_x,bed_y,2], center=true);
 			
+			color(mdf)
 			translate([0,bed_ypos-(bed_y-(bed_y/2-bed_ypos-NEMA_F[z_motor]/2))/2,-3/2])
 				cube([bed_x, bed_y/2-bed_ypos-NEMA_F[z_motor]/2, 3], center=true);
 	
 			for(i=[-1,1])					//bearing
 				translate([z_shaft_distance/2*i,0,0])
-					difference() {
-						cylinder(d=z_d, h=z_l);
-						translate([0,0,-e/2])
-							cylinder(d=z_s, h=z_l+e);
-					}
+					bearing(od=z_d, id=z_s, l=z_l);
 		}
 	}
 }
 
-z_carriage(ghosts=true);
+z_carriage(assembly=true);
 
 
