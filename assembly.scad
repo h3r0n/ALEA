@@ -3,6 +3,7 @@ include <config.scad>
 use <frame_top.scad>
 use <frame_bottom.scad>
 use <z_carriage.scad>
+use <extra/leadscrew.scad>
 
 module assembly() {
 
@@ -20,10 +21,13 @@ module assembly() {
 	translate([0,0,-(z_l+f_t)/2-z_h/2]) {
 		frame_bottom(assembly=true);
 		
-		color(shaft)
-		for(i=[-1,0,1]) 
+	color(shaft)
+		for(i=[-1,1]) 
 			translate([z_shaft_distance/2*i,ab_motor_ypos,-(z_l+f_t)/2])
 				cylinder(d=z_s, h=z_h+z_h_extra+f_t*2+z_l);
+				
+	translate([0,ab_motor_ypos,-(z_l+f_t)/2])
+		leadscrew(d=8, d_rod=7, pitch=8, start=4, l=z_h+z_h_extra+f_t*2+z_l);
 	
 	}
 }

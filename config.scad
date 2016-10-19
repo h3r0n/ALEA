@@ -102,7 +102,7 @@ ab_motor_xpos = f_x/2-f_t-y_sp-y_d/2-wall;
 ab_motor_ypos = f_y/2-f_t-(NEMA_H[ab_motor]*2+BOLT_D[3])/2+(f_t-f_tr)/2;
 
 
-z_shaft_distance = bed_x/2-wall;
+z_shaft_distance = bed_x/7*4;
 z_carriage_arm = NEMA_F[ab_motor]/2+y_l/2+x_d/2+wall+x_fan/2;
 z_carriage_arm_max = ab_motor_ypos+f_y/2-f_t-x_fan/2;
 
@@ -122,6 +122,7 @@ heatbed="Silver";
 th_rods=shaft;
 nema_body=fan;
 nema_plate=shaft;
+leadscrew=shaft;
 
 
 use <press_fit.scad>
